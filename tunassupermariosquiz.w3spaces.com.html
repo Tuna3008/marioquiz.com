@@ -1,0 +1,1590 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="manifest" href="/webmanifest.json">
+  <title>Mario Quiz</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn.lazyshop.com/files/bdec71f1-0c8d-4b2a-bd39-e4bcc30758e3/product/aa88c8ef7ba1f1d3b5876ce34c33700a.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <style>
+    .content {
+      display: none;
+    }
+
+
+    .einstell {
+      border-radius: 10px;
+      position: fixed;
+
+      top: 26px;
+      left: 24px;
+      width: 150px;
+
+    }
+
+    .cube {
+      border-radius: 10px;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: white;
+      margin-bottom: 4px;
+      font-family: Roboto, Arial;
+      width: 100%;
+      box-sizing: border-box;
+
+      border: 2px solid lightgrey;
+
+    }
+
+    .dark-button {
+      display: block;
+      color: black;
+      text-decoration: none;
+
+      box-sizing: border-box;
+      background-color: white;
+      margin-bottom: 4px;
+      font-family: Roboto, Arial;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      width: 150px;
+      border: 2px solid lightgrey;
+
+    }
+
+    .film {
+      border-radius: 13px;
+    }
+
+    .hbild {
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+    }
+
+
+    .hah {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .quelllinks p {
+      font-family: 'Muli', sans-serif;
+    }
+
+    .quellunten {
+      background-color: #dadce0;
+    }
+
+    .quellinks a {
+      font-family: 'Muli', sans-serif;
+      color: black;
+      text-decoration: none;
+    }
+
+    .quellinks a:hover,
+    quellinks a:focus {
+      text-decoration: underline;
+    }
+
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .quellen {
+      cursor: pointer;
+      font-family: "arial", "Roboto";
+      color: grey;
+
+    }
+
+    .quellen:hover,
+    .quellen:focus {
+      text-decoration: underline;
+    }
+
+    .punkten {
+      font-family: arial;
+    }
+
+
+    .dropbtn {
+      background-color: lightgreen;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+
+    .dropbtn:hover {
+      background-color: green;
+    }
+
+
+    .dropdown {
+      border-radius: 10px;
+      position: fixed;
+      display: inline-block;
+      top: 26px;
+      right: 24px;
+      width: 150px;
+
+    }
+
+
+    .dropdown-content {
+      display: none;
+      margin-top: 4px;
+      border-radius: 10px;
+    }
+
+
+
+    .dropdown {
+      border-radius: 10px;
+      position: fixed;
+      display: inline-block;
+      top: 26px;
+      right: 24px;
+      width: 150px;
+      right: 0;
+      min-width: 160px;
+      z-index: 2;
+    }
+
+
+    .dropdown-content a {
+
+      border-radius: 10px;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: lightgreen;
+      margin-bottom: 4px;
+      font-family: Roboto, Arial;
+
+    }
+
+
+    .dropdown-content a:hover {
+      background-color: green;
+    }
+
+
+    .show {
+      display: block;
+    }
+
+
+
+
+    .mariobild {
+      border-radius: 13px;
+      width: 42vw;
+    }
+
+    .button {
+
+      background-color: #add8e6;
+      border: 0.1px solid black;
+      padding: 10px;
+      border-radius: 7px;
+      align-items: center;
+      font-size: 40px;
+      font-size: 30px;
+      cursor: pointer;
+      font-family: "Roboto", "Arial", sans-serif;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      font-weight: 500;
+      overflow: hidden;
+      display: block;
+      cursor: pointer;
+      height: 4rem;
+      -webkit-line-clamp: 2;
+      display: box;
+      display: webkit-box;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      white-space: normal;
+      color: var(--yt-spec-text-primary);
+      font-family: "Roboto", "Arial", sans-serif;
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      font-weight: 500;
+      overflow: hidden;
+      display: block;
+      max-height: 4.4rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      white-space: normal;
+      margin-left: calc(50% - 21vw);
+      width: 40vw;
+    }
+
+    .button:hover {
+      background-color: #2F9AFF;
+    }
+
+    h2.page-title {
+
+      width: 40vw;
+      text-align: center;
+      border: 4px solid #808080;
+      padding: 0.3vh 4vw;
+      border-radius: 70px;
+      align-items: center;
+      background-color: white;
+      font-size: 4vw;
+      font-family: arial;
+
+    }
+
+
+
+
+    .link3 {
+      margin-top: 30px;
+
+      border: 1px solid black;
+      border-radius: 10px;
+
+      font-family: Roboto, Noto, sans-serif;
+      font-weight: lighter;
+      color: black;
+      padding: 10px;
+      width: 200px;
+    }
+
+    .link2 {
+      margin: 10px;
+      color: black;
+      border-radius: 10px;
+      text-decoration: blink;
+
+    }
+
+    .link3:hover {
+      background-color: lightgrey;
+    }
+
+
+
+    .link {
+      color: black;
+      font-family: arial;
+      margin-top: 100px;
+      border: 1px solid black;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: blink;
+
+
+    }
+
+
+    .link:hover {
+      background-color: lightgrey;
+    }
+
+
+    .imgpfeil {
+      margin-bottom: 10px;
+      width: 100px;
+    }
+
+
+    .imgfinal {
+      width: 200px;
+      border-radius: 15px;
+
+    }
+
+    h1 {
+      border: 1px solid #808080;
+      margin: 0 auto;
+      padding: 10 px;
+      border-radius: 10px;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: lightgreen;
+      margin-bottom: 4px;
+      font-family: Roboto, Arial;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      max-width: 400px;
+      border-radius: 70px;
+      font-family: arial;
+
+    }
+
+    h2.page-title {
+      margin: 0 auto;
+      border: 2.00000000000000001px solid black;
+      padding: 10px;
+      border-radius: 70px;
+      align-items: center;
+      background-color: white;
+      max-width: 700px;
+      font-size: 40px;
+      font-family: "Roboto", "Arial", sans-serif;
+      font-weight: lighter;
+    }
+
+
+
+
+    .mario {
+      margin: 0 auto;
+      width: 60%;
+      background: #f5f5f5;
+      padding: 16px 20px;
+      font-weight: bold;
+      list-style-type: none;
+      font-family: "IBM Plex Sans", "Tahoma", "Lucinda Grande", "Helvetica             Neue", "Helvetica", "DejaVu Sans", Arial, sans-serif;
+      font-size: 1.0rem;
+      line-height: 1.428571429;
+      color: #333;
+      background-color: #f2f2f2;
+      box-sizing: border-box;
+      box-shadow: 5px 10px 10px grey;
+
+    }
+
+
+    .antworten {
+      width: 60%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      padding-inline-start: 0;
+      justify-content: space-between;
+
+    }
+
+    .awpunkt {
+      margin: 0px;
+      width: 48%;
+      background: #f5f5f5;
+      padding: 16px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      list-style-type: none;
+      font-family: "IBM Plex Sans", "Tahoma", "Lucinda Grande", "Helvetica             Neue", "Helvetica", "DejaVu Sans", Arial, sans-serif;
+      font-size: 1.0rem;
+      line-height: 1.428571429;
+      color: #333;
+      background-color: #f2f2f2;
+      box-sizing: border-box;
+      box-shadow: 5px 10px 10px grey;
+    }
+
+    .anworten {
+      margin-right: 6.24px;
+    }
+
+    .awpunkt:hover {
+      background: lightgrey;
+    }
+
+    #frageantwort {                                     
+      display: none;
+    }
+
+    #spielende {
+      display: none;
+    }
+
+    @media screen and (max-width: 500px) {
+
+      .dark-button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .einstell {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+
+      h2.page-title {
+        width: 100vw;
+
+      }
+
+      .mariobild {
+        width: 100vw;
+      }
+
+      .button {
+        margin-left: 0;
+        width: 100vw;
+      }
+
+      .antworten {
+        flex-direction: column;
+        width: 95%;
+        gap: 20px;
+
+      }
+
+      .awpunkt {
+        width: auto;
+        border-radius: 10px;
+        box-shadow: none;
+        border: 2px solid black;
+        color: black;
+      }
+
+
+
+      .mario {
+        width: 95%;
+        box-shadow: none;
+        border: 2px solid black;
+        border-radius: 10px;
+      }
+
+      .dropdown {
+        position: relative;
+        top: auto;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .mariobild {
+        width: 100%;
+      }
+
+      h2.page-title {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .link3 {
+        border: 1px solid black;
+        padding: 7px;
+        border-radius: 10px;
+      }
+
+    }
+
+
+    body.dark .page-title {
+      color: white;
+      border-color: black;
+      background-color: #71717171;
+    }
+
+    body.dark .page {
+      background-color: black;
+    }
+
+    body.dark .button {
+      color: white;
+      background-color: #71717171;
+    }
+
+    body.dark .button:hover {
+      background-color: #717171;
+
+    }
+
+    body.dark .modal-content {
+      background-color: black;
+    }
+
+    body.dark p {
+      color: white;
+    }
+
+    body.dark .quellinks a {
+      color: white;
+    }
+
+    body.dark .dropbtn {
+      color: white;
+      background-color: #71717171;
+    }
+
+    body.dark .dropbtn:hover {
+      background-color: #717171;
+    }
+
+    body.dark .tut {
+      color: white;
+      background-color: #71717171;
+    }
+
+    body.dark .tut:hover {
+      background-color: #717171;
+    }
+
+    body.dark .quellunten {
+      background-color: #202124;
+    }
+
+    body.dark .awpunkt {
+      background-color: #202124;
+      box-shadow: none;
+      color: white;
+    }
+
+    body.dark .mario {
+      background-color: #202124;
+      color: white;
+      box-shadow: none;
+    }
+
+    body.dark .dark-button {
+      background-color: #202124;
+      color: white;
+    }
+
+    body.dark .dark-button:hover {
+      background-color: #717171;
+    }
+
+    body.dark .punkten {
+      color: white;
+    }
+
+    body.dark .alle1 {
+      color: white;
+      background-color: #71717171;
+    }
+
+    body.dark .link {
+      background-color: #71717171;
+      color: white;
+    }
+
+    body.dark .link3 {
+      background-color: #71717171;
+    }
+
+    body.dark .link2 {
+      color: white;
+    }
+
+    body.dark {
+      background-color: black;
+    }
+    
+    body.dark .cube {
+    color: white;
+    background-color: black;
+    }
+    
+    
+  </style>
+</head>
+
+<body>
+
+  <div class="hah">
+    <h2 id="oben" class="page-title">Das Super
+      Mario Quiz</h2>
+  </div>
+  <div class="einstell">
+    <button onclick="toggledesign()" id="mode" class="dark-button">
+      <span id="maglev">Darstellung</span>
+    </button>
+    <div id="design" class="content">
+
+      <a class="cube" href="#" onclick="darkModeAuto()">Gerätedesign verwenden</a>
+      <a class="cube" href="#" onclick="darkModeOn()">Dunkles Design</a>
+      <a class="cube" href="#" onclick="darkModeOff()">Helles Design</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">
+      <div class="cool">
+        <span id="langbtn">Deutsch</span><span id="langbtnarrow">▼</span>
+      </div>
+    </button>
+    <div id="myDropdown" class="dropdown-content">
+      <a class="tut" href="#" onclick="setLanguage('DE')">Deutsch</a>
+      <a class="tut" href="#" onclick="setLanguage('EN')">English</a>
+      <a class="tut" href="#" onclick="setLanguage('ES')">Español</a>
+      <a class="tut" href="#" onclick="setLanguage('TR')">Türkçe</a>
+      <a class="tut" href="#" onclick="setLanguage('RU')">Русский</a>
+    </div>
+  </div>
+
+  <div id="startgame">
+    <div style="text-align:center">
+      <div class="groese">
+
+        <br>
+        <img class="mariobild" src="https://i.ytimg.com/vi/58ngmmBp4Tc/maxresdefault.jpg">
+        <div id="buttonsprache" class="button" onclick="startgame()">
+          Hier klicken um das Quiz starten!
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <div id="frageantwort">
+    <div style="text-align:center">
+
+      <br>
+      <br>
+    </div>
+    <div style="text-align:center">
+      <img class="film" id="img1"
+        src="https://quiz-media.stroeermediabrands.de/5b/97/34/409a5fe3de1ace36630a5381f3_ciA2NTAgMzY1LjYyNQM1NzRhZWVjNjAzZg==.jpg"
+        height="224px">
+    </div>
+    <div class="mario">
+      <p class="wario">
+        <span id="Nummer">Frage 1 von 15</span>
+      </p>
+      <h3 class="luigi" id="Q">Welche Farbe hat Marios Hose?</h3>
+    </div>
+
+
+
+
+    <br>
+    <ul class="antworten">
+      <li onclick="antwort1()" class="awpunkt" id="A1">Gelb</li>
+      <li onclick="antwort2()" class="awpunkt" id="A2">Rot</li>
+      <li onclick="antwort3()" class="awpunkt" id="A3">Grün</li>
+      <li onclick="antwort4()" class="awpunkt" id="A4">Blau</li>
+    </ul>
+  </div>
+  <div id="spielende">
+    <div style="text-align:center">
+
+      <br>
+      <br>
+    </div>
+    <div style="text-align:center">
+      <h1 class="alle1" id="alle">Alle Fragen beantwortet Das Quiz ist vorbei</h1>
+      <div class="punkten">
+        <h2 id="du">Du hast <span id="du">0</span> von 15
+          Punkten</h2>
+      </div>
+      <div class="hbild">
+        <img class="imgfinal"
+          src="https://play-lh.googleusercontent.com/cXjp3-EiKdvUMtP-0hMHNapuPZN8TchphXA_h-4UuDKkzh1dOf2Gr6J_97tGa2RVndw=w240-h480-rw">
+        <div class="block">
+          <img class="imgpfeil" src="https://img.freepik.com/freie-ikonen/pfeil-nach-unten_318-1470.jpg">
+
+          <div id="link">
+            <a id="odyssey" class="link" href="https://tunassupermariosquiz.w3spaces.com/">Das Quiz neu starten</a>
+          </div>
+          <div class="lll">
+            <h3 class="link3"><a id="ody" class="link2" href="https://www.youtube.com/channel/UCbxlaUhwoF8hkTEj-bgAw4Q">Mein Youtube-Kanal. Hier könnt ihr abonnieren</a></h3>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="quellunten">
+    <hr>
+    <br>
+    <div style="text-align:center">
+      <p class="quellen" id="qsprach">Quellen</p>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="quellinks">
+          <p id="jjj" style="font-family: 'Muli',sans-serif;">Quellen:</p>
+          <a href="https://i.ytimg.com/vi/58ngmmBp4Tc/maxresdefault.jpg">
+            <p id="das">Das Bild vom Anfang<p>
+          </a>
+          <a
+            href="https://www.giga.de/extra/die-besten-spiele-aller-zeiten/quizzes/wie-gut-kennst-du-super-mario-luigi-prinzessin-peach-co.-quiz/">
+            <p id="die">Die Bilder von den Fragen</p>
+          </a>
+          <a
+            href="https://play-lh.googleusercontent.com/cXjp3-EiKdvUMtP-0hMHNapuPZN8TchphXA_h-4UuDKkzh1dOf2Gr6J_97tGa2RVndw=w240-h480-rw">
+            <p id="hvv">Das Bild am Ende</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  </div>
+
+
+
+
+  <script>
+
+    var sprache = 'DE' // DE, EN, ES, TR, RU 
+
+    function setLanguage(lang) {
+      sprache = lang
+      console.log('Die neue Sprache ist:', sprache)
+      var sprachName;
+      if (lang == 'DE') {
+        sprachName = 'Deutsch';
+      } else if (lang == 'EN') {
+        sprachName = 'English';
+      } else if (lang == 'ES') {
+        sprachName = 'Español';
+      } else if (lang == 'TR') {
+        sprachName = 'Türkçe';
+      } else if (lang == 'RU') {
+        sprachName = 'Русский';
+      }
+      document.getElementById("langbtn").innerHTML = sprachName
+      updateFrage();
+    }
+
+    function startgame() {
+      document.getElementById("startgame").style.display = 'none';
+      document.getElementById("frageantwort").style.display = 'block';
+      updateFrage();
+    }
+
+    var punkte = 0;
+    function antwort1() {
+      if (Richtig[frage] == "A") {
+        //alert("Richtig");
+        punkte++;
+        next();
+      } else {
+        next();
+        //alert("Falsch");
+      }
+    }
+    function antwort2() {
+      if (Richtig[frage] == "B") {
+        //alert("Richtig");
+        punkte++
+        next();
+      } else {
+        next();
+        //alert("Falsch");
+      }
+    }
+    function antwort3() {
+      if (Richtig[frage] == "C") {
+        //alert("Richtig");
+        punkte++
+        next();
+      } else {
+        next();
+        ////alert("Falsch");
+      }
+    }
+    function antwort4() {
+      if (Richtig[frage] == "D") {
+        //alert("Richtig");
+        punkte++
+        next();
+      } else {
+        next();
+        //alert("Falsch");
+      }
+    }
+
+    function updateFrage() {
+      var aktuelleFrage
+      var fragenNummer
+      var antwortA
+      var antwortB
+      var antwortC
+      var antwortD
+      var oben
+      var butsprach
+      var qsprach
+      var alle
+      var du
+      var jjj
+      var das
+      var odyssey
+      var ody
+      
+      if (sprache == 'DE') {
+        ody = odyDE
+        odyssey = odysseyDE
+        das = dasDE
+        jjj = jjjDE
+        du = duDE.replace('PUNKTE', punkte)
+        alle = alleDE
+        qsprach = qsprachDE
+        butsprach = butsprachDE
+        oben = obenDE
+        aktuelleFrage = fragen[frage]
+        fragenNummer = "Frage " + (frage + 1) + " von 15";
+        antwortA = A[frage];
+        antwortB = B[frage];
+        antwortC = C[frage];
+        antwortD = D[frage];
+      } else if (sprache == 'EN') {
+        ody = odyEN
+        odyssey = odysseyEN
+        das = dasEN
+        jjj = jjjEN
+        du = duEN.replace('PUNKTE', punkte)
+        alle = alleEN
+        qsprach = qsprachEN
+        butsprach = butsprachEN
+        oben = obenEN
+        aktuelleFrage = fragenEN[frage]
+        fragenNummer = "Question " + (frage + 1) + " of 15";
+        antwortA = AEN[frage];
+        antwortB = BEN[frage];
+        antwortC = CEN[frage];
+        antwortD = DEN[frage];
+      } else if (sprache == 'ES') {
+        ody = odyES
+        odyssey = odysseyES
+        das = dasES
+        jjj = jjjES
+        du = duES.replace('PUNKTE', punkte)
+        alle = alleES
+        qsprach = qsprachES
+        butsprach = butsprachES
+        oben = obenES
+        aktuelleFrage = fragenES[frage]
+        fragenNummer = "Pregunta " + (frage + 1) + " de 15";
+        antwortA = AES[frage];
+        antwortB = BES[frage];
+        antwortC = CES[frage];
+        antwortD = DES[frage];
+      } else if (sprache == 'TR') {
+        ody = odyTR
+        odyssey = odysseyTR
+        das = dasTR
+        jjj = jjjTR
+        du = duTR.replace('PUNKTE', punkte)
+        alle = alleTR
+        qsprach = qsprachTR
+        butsprach = butsprachTR
+        oben = obenTR
+        aktuelleFrage = fragenTR[frage]
+        fragenNummer = "15 sorudan " + (frage + 1) + ". soru";
+        antwortA = ATR[frage];
+        antwortB = BTR[frage];
+        antwortC = CTR[frage];
+        antwortD = DTR[frage];
+      }
+      else if (sprache == 'RU') {
+        ody = odyRU
+        das = dasRU
+        odyssey = odysseyRU
+        jjj = jjjRU
+        du = duRU.replace('PUNKTE', punkte)
+        alle = alleRU
+        qsprach = qsprachRU
+        butsprach = butsprachRU
+        oben = obenRU
+        aktuelleFrage = fragenRU[frage]
+        fragenNummer = "Вопрос " + (frage + 1) + " из 15";
+        antwortA = ARU[frage];
+        antwortB = BRU[frage];
+        antwortC = CRU[frage];
+        antwortD = DRU[frage];
+      }
+      document.getElementById("ody").innerHTML = ody
+      document.getElementById("odyssey").innerHTML = odyssey
+      document.getElementById("du").innerHTML = du
+      document.getElementById("A1").innerHTML = antwortA;
+      document.getElementById("A2").innerHTML = antwortB;
+      document.getElementById("A3").innerHTML = antwortC;
+      document.getElementById("A4").innerHTML = antwortD;
+      document.getElementById("Nummer").innerHTML = fragenNummer
+      document.getElementById("oben").innerHTML = oben
+      document.getElementById("alle").innerHTML = alle
+      document.getElementById("Q").innerHTML = aktuelleFrage;
+      document.getElementById("buttonsprache").innerHTML = butsprach
+      document.getElementById("qsprach").innerHTML = qsprach
+      document.getElementById("jjj").innerHTML = jjj
+      document.getElementById("das").innerHTML = das
+      let img = document.getElementById("img1")
+
+      img.src = IMG[frage];
+    }
+
+
+    function next() {
+      frage++;
+      updateFrage()
+      if (frage >= fragen.length) {
+        document.getElementById("frageantwort").style.display = 'none';
+        document.getElementById("spielende").style.display = 'block';
+      }
+
+    }
+
+    var frage = 0;
+
+    var fragen = [
+      "Welche Farbe hat Marios Hose?",
+      "Wer ist Marios Bruder?",
+      "Wer leiht Mario seit 1995 bis 2023 seine Stimme?",
+      "In welchem Spiel tauchte Mario (damals noch unter anderem Namen) das erste Mal auf?",
+      "Wie wurde Prinzessin Peach zunächst in Nordamerika genannt?",
+      "Welchen Beruf hat Mario?",
+      "Wie heißt das Mario-Spiel, das an Tetris erinnert?",
+      "Wer verkörperte Mario im gefloppten Super Mario Bros.-Kinofilm?",
+      "In welchem Spiel tauchten zum ersten Mal die Buu Huus auf?",
+      "In welchem Spiel hat Bowser einen Gastauftritt und kann die Stadt verwüsten?",
+      "Wer sagt den Satz Thank you Mario! But our princess is in another castle?",
+      "Wie heißen die sternenartigen Wesen, deren Adoptivmutter Rosalina ist?",
+      "Für welche Konsole ist Super Mario Odyssey?",
+      "Welchen Zusatz trägt das Mario-Kart-Spiel für den Gamecube?",
+      "Wie heißt die Figur, die von SEGA erfunden wurde und Marios Konkurrenz in den 90ern darstellen sollte?",
+
+
+    ];
+    var fragenEN = [
+      "What color are Mario's pants?",
+      "Who is Mario's brother?",
+      "Who has been lending his voice to Mario since 1995?",
+      "In which game did Mario (under a different name at the time) appear for the first time?",
+      "What was Princess Peach first called in North America?",
+      "What is Mario's job?",
+      "What's the name of the Mario game that reminds you of Tetris?",
+      "Who played Mario in the flopped Super Mario Bros. movie?",
+      "In which game did the Buu Huus appear for the first time?",
+      "In which game does Bowser guest star and wreak havoc on the city?",
+      "Who says the sentence Thank you Mario! But our princess is in another castle?",
+      "What are the names of the starlike beings whose adoptive mother is Rosalina?",
+      "What console is Super Mario Odyssey for?",
+      "What addition does the Mario Kart game carry for the Gamecube?",
+      "What's the name of the character invented by SEGA who would be Mario's competition in the 90's?",
+    ];
+
+    var fragenES = [
+      "¿De qué color son los pantalones de Mario?",
+      "¿Quién es el hermano de Mario?",
+      "¿Quién le ha prestado su voz a Mario desde 1995?",
+      "¿En qué juego apareció Mario (con un nombre diferente en ese momento) por primera vez?",
+      "¿Cómo se llamó por primera vez a la Princesa Peach en América del Norte?",
+      "¿Cuál es el trabajo de Mario?",
+      "¿Cómo se llama el juego de Mario que te recuerda a Tetris?",
+      "¿Quién interpretó a Mario en la película de Super Mario Bros. que fracasó?",
+      "¿En qué juego apareció por primera vez el Buu Huus?",
+      "¿En qué juego aparece Bowser como estrella invitada y causa estragos en la ciudad?",
+      "¿Quién dice la frase ¡Gracias Mario! ¿Pero nuestra princesa está en otro castillo?",
+      "¿Cómo se llaman los seres estelares cuya madre adoptiva es Rosalina?",
+      "¿Para qué consola es Super Mario Odyssey?",
+      "¿Qué añadido lleva el juego de Mario Kart para la Gamecube?",
+      "¿Cómo se llama el personaje inventado por SEGA que sería la competencia de Mario en los 90?",
+    ];
+
+    var fragenTR = [
+      "Mario'nun pantolonu ne renk?",
+      "Mario'nun kardeşi kim?",
+      "1995'ten beri Mario'ya kim ses veriyor?",
+      "Mario (o sırada farklı bir adla) ilk kez hangi oyunda ortaya çıktı?",
+      "Kuzey Amerika'da Prenses Şeftali ilk olarak ne deniyordu?",
+      "Mario'nun işi nedir?",
+      "Sana Tetris'i hatırlatan Mario oyununun adı ne?",
+      "Flop olan Super Mario Bros. filminde Mario'yu kim canlandırdı?",
+      "Buu Huus ilk kez hangi oyunda ortaya çıktı?",
+      "Bowser hangi oyunda konuk oyuncu olarak yer alıyor ve şehri kasıp kavuruyor?",
+      "Teşekkürler Mario cümlesini kim söylüyor! Ama prensesimiz başka bir şatoda?",
+      "Üvey annesi Rosalina olan yıldız benzeri varlıkların adları nelerdir?",
+      "Super Mario Odyssey hangi konsol için?",
+      "Mario Kart oyunu Gamecube için hangi eklentileri taşıyor?",
+      "90'larda Mario'nun rakibi olacak olan SEGA tarafından icat edilen karakterin adı nedir?",
+    ];
+
+    var fragenRU = [
+      "Какого цвета штаны Марио?",
+      "Кто брат Марио?",
+      "Кто озвучивает Марио с 1995 года?",
+      "В какой игре впервые появился Марио (тогда под другим именем)?",
+      "Как впервые назвали принцессу Пич в Северной Америке?",
+      "Кем работает Марио?",
+      "Как называется игра Марио, которая напоминает вам тетрис?",
+      "Кто играл Марио в провалившемся фильме Super Mario Bros.?",
+      "В какой игре впервые появился Буу Хуус?",
+      "В какой игре Баузер играет главную роль и сеет хаос в городе?",
+      "Кто произносит фразу «Спасибо, Марио! Но наша принцесса в другом замке?",
+      "Как зовут звездоподобных существ, приемной матерью которых является Розалина?",
+      "Для какой консоли Super Mario Odyssey?",
+      "Какое дополнение содержит игра Mario Kart для Gamecube?",
+      "Как зовут персонажа, придуманного SEGA, который станет конкурентом Марио в 90-х?",
+    ];
+
+
+
+    var A = [
+      "Gelb",
+      "Waluigi",
+      "Nolan North",
+      "Donkey Kong",
+      "Princess Yoshichair",
+      "Bauarbeiter",
+      "Dr. Mario",
+      "Bob Hoskins",
+      "Super Mario Bros. 3",
+      "RollerCoaster Tycoon",
+      "Luigi",
+      "Lumas",
+      "Nintendo 3DS",
+      "7",
+      "Pac-Man",
+    ];
+
+    var AEN = [
+      "Yellow",
+      "Waluigi",
+      "Nolan North",
+      "DonkeyKong",
+      "Princess Yoshichair",
+      "Construction worker",
+      "Dr Mario",
+      "Bob Hoskins",
+      "Super Mario Bros. 3",
+      "Roller Coaster Tycoon",
+      "Luigi",
+      "lumas",
+      "Nintendo 3DS",
+      "7",
+      "Pac Man",
+    ];
+
+    var AES = [
+      "Amarillo",
+      "Waluigi",
+      "Nolan Norte",
+      "Donkey Kong",
+      "Princesa Yoshichair",
+      "Obrero",
+      "Doctor Mario",
+      "Bob Hoskins",
+      "Super Mario Bros 3",
+      "Magnate de la montaña rusa",
+      "Luigi",
+      "lumas",
+      "Nintendo 3ds",
+      "7",
+      "Pac Man",
+    ];
+
+    var ATR = [
+      "Sarı",
+      "Waluigi",
+      "Nolan North",
+      "Donkey Kong",
+      "Prenses Yoshichair",
+      "İnşaat işçisi",
+      "Dr. Mario",
+      "Bob Hoskins",
+      "Süper Mario Bros. 3",
+      "Roller Coaster Kralı",
+      "Luigi",
+      "Lumas",
+      "Nintendo 3ds",
+      "7",
+      "Pac-Man",
+    ];
+
+
+    var ARU = [
+      "Желтый",
+      "Валуиджи",
+      "Нолан Норт",
+      "ДонкиКонг",
+      "Принцесса Йошичайр",
+      "Строитель",
+      "Доктор Марио",
+      "Боб Хоскинс",
+      "Супер Марио Бразерс 3",
+      "Магнат американских горок",
+      "Луиджи",
+      "люмы",
+      "Нинтендо 3ДС",
+      "7",
+      "Пакмен",
+    ];
+
+
+    var B = [
+      "Rot",
+      "Luigi",
+      "Troy Baker",
+      "Yoshi's Island",
+      "Princess Koopathrone",
+      "Pizzabäcker",
+      "Mario's Plumbing Adventure",
+      "Robert De Niro",
+      "Super Mario 64",
+      "Anno 1503",
+      "Yoshi",
+      "Starries",
+      "Nintendo Switch",
+      "Super Smash",
+      "Ryo Hazuki",
+    ];
+
+    var BEN = [
+      "Red",
+      "Luigi",
+      "Troy Baker",
+      "Yoshi's Island",
+      "Princess Koopathrone",
+      "pizza maker",
+      "Mario's Plumbing Adventure",
+      "Robert DeNiro",
+      "Super Mario 64",
+      "Anno 1503",
+      "yoshi",
+      "Starries",
+      "Nintendo Switch",
+      "Super Smash",
+      "Ryo Hazuki",
+
+    ];
+
+    var BES = [
+      "Rojo",
+      "Luigi",
+      "Troy Panadero",
+      "Isla de Yoshi",
+      "Princesa Koopathrone",
+      "pizzero",
+      "La aventura de fontanería de Mario",
+      "Robert de Niro",
+      "Súper Mario 64",
+      "Anno 1503",
+      "yoshi",
+      "Estrellas",
+      "Interruptor de Nintendo",
+      "Super Smash",
+      "Ryo Hazuki",
+    ];
+
+    var BTR = [
+      "Kırmızı",
+      "Luigi",
+      "Truva Fırıncısı",
+      "Yoshi'nin Adası",
+      "Prenses Koopathrone",
+      "Pizza yapan kişi",
+      "Mario'nun Tesisat Macerası",
+      "Robert De Niro",
+      "Süper Mario 64",
+      "Yılbaşı 1503",
+      "yoshi",
+      "Yıldızlar",
+      "Nintendo Anahtarı",
+      "Süper Vuruş",
+      "Ryo Hazuki",
+    ];
+
+    var BRU = [
+      "Красный",
+      "Луиджи",
+      "Трой Бейкер",
+      "Остров Йоши",
+      "Принцесса Коопатрон",
+      "производитель пиццы",
+      "Приключение Марио-сантехника",
+      "Роберт Де Ниро",
+      "Супер Марио 64",
+      "Анно 1503",
+      "йоши",
+      "Звезды",
+      "Нинтендо Свитч",
+      "Супер Смэш",
+      "Рё Хадзуки",
+    ];
+
+    var C = ["Grün", "Peach", "Charles Martinet", "Super Mario Bros.", "Princess Toadstool", "Klempner", "Prof. Mario", "Danny DeVito", "Super Mario Bros.", "SimCity", "Toad", "Koopas", "Wii U", "Double Dash", "Sonic",];
+
+    var CEN = ["Green", "peaches", "Charles Martinet", "Super Mario Bros.", "Princess Toadstool", "Plumber", "Professor Mario", "Danny DeVito", "Super Mario Bros.", "SimCity", "toad", "Koopas", "Wii-U", "Double Dash", "Sonic",];
+
+    var CES = ["Verde", "melocotones", "Charles Martinet", "Super Mario Bros.", "Princesa Toadstool", "Plomero", "Profesor Mario", "Danny DeVito", "Super Mario Bros.", "Ciudad Sim", "sapo", "Koopas", "wii u", "Doble guión", "Sonic",];
+
+    var CTR = ["Yeşil", "şeftaliler", "Charles Martinet", "Süper Mario Kardeşler.", "Prenses Mantarı", "Tesisatçı", "Profesör Mario", "Danny Devito", "Süper Mario Kardeşler.", "SimCity", "karakurbağası", "Toad", "Wi-U", "Double Dash", "Sonic",];
+
+    var CRU = ["Зеленый", "персики", "Шарль Мартине", "Супер Марио Бразерс", "Принцесса Поганка", "Водопроводчик", "Профессор Марио", "Дэнни ДеВито", "Супер Марио Бразерс", "СимСити", "жаба", "Коопас", "Вии-Ю", "Двойной рывок", "звуковой",];
+
+
+    var D = [
+      "Blau",
+      "Daisy",
+      "David Cage",
+      "Donkey Kong Jr.",
+      "Princess Bowserdesk",
+      "Gärtner",
+      "Mario & the Blocks",
+      "Dennis Hopper",
+      "Super Mario Galaxy",
+      "Die Siedler",
+      "Daisy",
+      "Gumbas",
+      "Nitendo 2DS",
+      "Super Circuit",
+      "Crash Bandicoot",
+    ];
+
+    var DEN = [
+      "Blue",
+      "daisy",
+      "David Cage",
+      "Donkey Kong Jr.",
+      "Princess Bowser Desk",
+      "Gardener",
+      "Mario & the Blocks",
+      "Dennis Hopper",
+      "SuperMario Galaxy",
+      "The settlers",
+      "daisy",
+      "gumba",
+      "Nintendo 2DS",
+      "Super Circuit",
+      "Crash Bandicoot",
+    ];
+
+    var DES = [
+      "Azul",
+      "margarita",
+      "David jaula",
+      "Donkey Kong Jr.",
+      "Escritorio de la Princesa Bowser",
+      "Jardinero",
+      "Mario y los bloques",
+      "Dennis Hopper",
+      "Super Mario Galaxy",
+      "Los colonos",
+      "margarita",
+      "gumbas",
+      "Nintendo 2DS",
+      "Super Circuito",
+      "Crash Bandicoot",
+    ];
+
+    var DTR = [
+      "Mavi",
+      "papatya",
+      "David Kafesi",
+      "Donkey Kong Jr.",
+      "Prenses Bowser Masası",
+      "Bahçıvan",
+      "Mario ve Bloklar",
+      "Dennis Hopper",
+      "Süper Mario Galaksisi",
+      "Yerleşimciler",
+      "papatya",
+      "Gumbas",
+      "Nintendo 2DS",
+      "Süper Devre",
+      "Crash Bandicoot",
+    ];
+
+    var DRU = [
+      "Синий",
+      "ромашка",
+      "Дэвид Кейдж",
+      "сел Конг младший",
+      "Письменный стол принцессы Баузер",
+      "Садовник",
+      "Марио и блоки",
+      "Деннис Хоппер",
+      "СуперМарио Гэлакси",
+      "Поселенцы",
+      "ромашка",
+      "гумбас",
+      "Нинтендо 2ДС",
+      "Супер Цепь",
+      "Крэш Бандикут",
+    ];
+
+
+
+    var IMG = [
+      "https://quiz-media.stroeermediabrands.de/5b/97/34/409a5fe3de1ace36630a5381f3_ciA2NTAgMzY1LjYyNQM1NzRhZWVjNjAzZg==.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5c1175511137a62a8282f3d5/1596753530051-5PK47OIY607H00HTVQPV/Mar10-Mario-day-legacy-cast.png?format=1000w",
+      "https://quiz-media.stroeermediabrands.de/ca/63/3e/91761eb90dd851291b0e88dc42_ciA2NTAgMzY1LjYyNQNjMzk2YmQ1OTA4NA==.jpg",
+      "https://quiz-media.stroeermediabrands.de/09/d6/df/092e67adfb6871a482e4e61018_ciA2NTAgMzY1LjYyNQMwNjBlYWI3NGU2MQ==.jpg",
+      "https://quiz-media.stroeermediabrands.de/55/5b/4c/faf8a4c95d9e0ac76d1ee6a4fb_ciA2NTAgMzY1LjYyNQM1YmY4Y2QwNzE2Zg==.jpg",
+      "https://quiz-media.stroeermediabrands.de/98/5d/f0/d13503373c130ea2db3bde4a9b_ciA2NTAgMzY1LjYyNQM5ZGQ1M2MwMjNlOQ==.jpg",
+      "https://quiz-media.stroeermediabrands.de/af/ce/79/995ed6fb5f8669b199abae69e9_ciA2NTAgMzY1LjYyNQNhZTllZmY2MWFlZQ==.jpg",
+      "https://quiz-media.stroeermediabrands.de/12/df/f0/f63b2d807b1904318b279f3fcc_ciA2NTAgMzY1LjYyNQMxZmZiOGIwMTJmYw==.jpg",
+      "https://quiz-media.stroeermediabrands.de/a2/23/d1/a5be03e3edae4c2c9599728c98_ciA2NTAgMzY1LjYyNQNhM2FlZWQ0YzkyOQ==.jpg",
+      "https://quiz-media.stroeermediabrands.de/73/63/fb/67a494e797f16faeda758191ce_ciA2NTAgMzY1LjYyNQM3MzY0ZTc2ZTcxYw==.jpg",
+      "https://quiz-media.stroeermediabrands.de/79/65/4f/cbd0ce5ebf9fec41152e02e1bd_ciA2NTAgMzY1LjYyNQM3NWMwNWZlMTIyYg==.jpg",
+      "https://quiz-media.stroeermediabrands.de/d8/c2/3f/4ba14fe94ecf40b1f6d8f37956_ciA2NTAgMzY1LjYyNQNkMjQxZWU0MWQzNQ==.jpg",
+      "https://images.cgames.de/images/gsgp/208/super-mario-odyssey_6011523.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/2b/GameCube-Console-Set.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa8FSzDb3OMrdkdA5y7fzE2AWISZ1Zg8S9fC83HAFxZLsJF0Rc17c2TXdcfD1isUfWnZ4&usqp=CAU",
+
+
+
+
+
+
+    ]
+
+    var Richtig = [
+      "D",
+      "B",
+      "C",
+      "A",
+      "C",
+      "C",
+      "A",
+      "A",
+      "A",
+      "C",
+      "C",
+      "A",
+      "B",
+      "C",
+      "C",
+    ];
+
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+      updateBtnArrow();
+    }
+
+    function updateBtnArrow() {
+      if (document.getElementById("myDropdown").classList.contains('show')) {
+        document.getElementById("langbtnarrow").innerHTML = '▲'
+      } else {
+        document.getElementById("langbtnarrow").innerHTML = '▼'
+      }
+    }
+
+    "Quellen:"
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn') && !event.target.matches('#langbtn') && !event.target.matches('#langbtnarrow')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+        updateBtnArrow()
+      }
+    }
+
+    var obenDE = "Das Super Mario Quiz";
+
+    var obenEN = "The Super Mario Quiz";
+
+    var obenES = "El concurso de Super Mario";
+
+    var obenTR = "Süper Mario Sınavı";
+
+    var obenRU = "Викторина Супер Марио";
+
+    var butsprachDE = "Hier klicken um das Quiz starten!";
+
+    var butsprachEN = "Click here to start the quiz!";
+
+    var butsprachES = "¡Haz clic aquí para comenzar el cuestionario!";
+
+    var butsprachTR = "Sınavı başlatmak için buraya tıklayın!";
+
+    var butsprachRU = "Нажмите здесь, чтобы начать викторину!";
+
+    var qsprachDE = "Quellen"; var qsprachEN = "Sources";
+    var qsprachES = "Fuentes"; var qsprachTR = "Kaynaklar";
+    var qsprachRU = "Источники";
+
+    var alleDE = "Alle Fragen beantwortet Das Quiz ist vorbei";
+    var alleEN = "All questions answered The quiz is over";
+    var alleES = "Todas las preguntas respondidas. El cuestionario ha terminado"
+    var alleTR = "Tüm sorular cevaplandı Sınav bitti"
+    var alleRU = "Ответы на все вопросы. Викторина окончена";
+
+    var duDE = "Du hast PUNKTE von 15 Punkten";
+
+    var duEN = "You have PUNKTE out of 15 points";
+
+    var duES = "Tienes PUNKTE de 15 puntos";
+
+    var duTR = "15 üzerinden PUNKTE puanınız var";
+
+    var duRU = "У вас PUNKTE баллов из 15";
+
+    var jjjDE = "Quellen:";
+    var jjjEN = "Sources:";
+    var jjjES = "Fuentes:";
+    var jjjTR = "Kaynaklar:";
+    var jjjRU = "Источники:";
+
+    var dasDE = "Das Bild vom Anfang";
+    var dasEN = "The Picture from the Beginning";
+    var dasES = "La foto desde el principio";
+    var dasTR = "En başından resim";
+    var dasRU = "Картинка с самого начала";
+
+    var odysseyDE = "Das Quiz neu starten";
+    var odysseyEN = "Restart the quiz";
+    var odysseyES = "Reiniciar el cuestionario";
+    var odysseyTR = "Sınavı yeniden başlat";
+    var odysseyRU = "Перезапустить викторину";
+
+ var odyDE = "Mein Youtube-Kanal. Hier könnt ihr abonnieren";
+ var odyEN = "My Youtube channel. You can subscribe here";
+ var odyES = "Mi canal de Youtube. Puedes suscribirte aquí";
+ var odyTR = "Youtube kanalım. Buradan abone olabilirsiniz";
+ var odyRU = "Мой канал на Youtube. Подписаться можно здесь";
+ 
+ 
+
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("qsprach");
+
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    var darkModeManual = false;
+
+    function darkModeOn() {
+      document.body.classList.add("dark");
+      darkModeManual = true;
+    }
+
+    function darkModeOff() {
+      document.body.classList.remove("dark");
+      darkModeManual = true;
+    }
+
+
+    function darkModeAuto() {
+      darkModeManual = false;
+      updateDarkMode();
+    }
+
+    function updateDarkMode() {
+      if (darkModeManual) {
+        return;
+      }
+
+      const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+      if (prefersDarkScheme.matches) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }
+
+    updateDarkMode();
+    window.setInterval(updateDarkMode, 1000);
+
+    function toggledesign() {
+      document.getElementById("design").classList.toggle("show");
+
+    }
+
+  </script>
+</body>
+</html>
